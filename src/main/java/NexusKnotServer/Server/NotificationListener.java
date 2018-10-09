@@ -1,4 +1,4 @@
-package Enigma.Server;
+package NexusKnotServer.Server;
 
 public class NotificationListener {
 }
