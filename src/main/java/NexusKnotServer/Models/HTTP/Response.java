@@ -1,10 +1,11 @@
 package NexusKnotServer.Models.HTTP;
 
 public class Response {
-    public String[] headers;
-    public String body;
-    public int contentLength;
-    public int responseCode;
+    private String[] headers;
+    private String body;
+    private int contentLength;
+    private int responseCode;
+    private ErrorCode error;
 
     public String[] getHeaders() {
         return headers;
@@ -36,5 +37,13 @@ public class Response {
 
     public void setResponseCode(int responseCode) {
         this.responseCode = responseCode;
+    }
+
+    public ErrorCode getError() {
+        return error;
+    }
+
+    public void setError(ErrorCode error) {
+        this.error = error;
     }
 }

@@ -1,24 +1,40 @@
-package NexusKnotServer;
+package NexusKnotServer.Server;
 
 import NexusKnotServer.ClientHandler.SessionWorker;
 import NexusKnotServer.Models.Client;
 import NexusKnotServer.Models.Session;
+import NexusKnotServer.TaskHandler.TaskWorker;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+
 import java.util.Scanner;
 
 public class NexusKnotServer {
 
-    public NexusKnotServer() {
-        SessionWorker sessionWorker = new SessionWorker();
+    public static final Logger logger = Logger.getLogger(NexusKnotServer.class.getName());
+
+    public NexusKnotServer()
+    {
+        logger.setLevel(Level.DEBUG);
+        logger.info("Server is starting");
+
         ServerSocket server = null;
-        Client pendingClient = null;
+
         try {
             server = new ServerSocket(4457);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+
+        //Actual server tasks
+        TaskWorker taskWorker = new TaskWorker();
+
+        // Client and serverside routine
+        Client pendingClient = null;
+        SessionWorker sessionWorker = new SessionWorker();
 
         while (true) {
 
@@ -29,7 +45,7 @@ public class NexusKnotServer {
             }
 
             Session clientSessionThread = new Session(pendingClient);
-            System.out.println("[SERVER]: New Client connected with session: " + clientSessionThread.getSessionId());
+            logger.info("New Client connected with session: " + clientSessionThread.getSessionId());
             sessionWorker.open(clientSessionThread);
 
             new Thread(() -> {

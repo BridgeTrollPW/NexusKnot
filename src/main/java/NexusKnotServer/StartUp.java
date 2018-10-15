@@ -1,6 +1,6 @@
 package NexusKnotServer;
 
-import NexusKnotServer.NexusKnotServer;
+import NexusKnotServer.Server.NexusKnotServer;
 
 public class StartUp {
 

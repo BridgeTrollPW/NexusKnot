@@ -9,8 +9,8 @@
         <module name="NexusKnot" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="NexusKnot" target="10" />
+    <bytecodeTargetLevel target="8">
+      <module name="NexusKnot" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
