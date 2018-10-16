@@ -52,6 +52,11 @@ public class HTTPClient {
         return this;
     }
 
+    /**
+     * @todo something still throws an unhandled exception on normal rest errors like 404
+     * @return
+     * @throws IOException
+     */
     public Response get() throws IOException {
         try {
             connection = (HttpURLConnection) new URL(this.protocol.toString() + "://" + this.targetUrl).openConnection();
