@@ -4,21 +4,20 @@ import NexusKnotServer.ClientHandler.SessionWorker;
 import NexusKnotServer.Models.Client;
 import NexusKnotServer.Models.Session;
 import NexusKnotServer.TaskHandler.TaskWorker;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+
 
 import java.io.IOException;
 import java.net.ServerSocket;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class NexusKnotServer {
 
-    public static final Logger logger = Logger.getLogger(NexusKnotServer.class.getName());
+    private static final Logger logger = Logger.getLogger(NexusKnotServer.class.getName());
 
     public NexusKnotServer()
     {
-        logger.setLevel(Level.DEBUG);
         logger.info("Server is starting");
 
         ServerSocket server = null;
