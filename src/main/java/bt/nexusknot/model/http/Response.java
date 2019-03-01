@@ -1,4 +1,4 @@
-package NexusKnotServer.Models.HTTP;
+package bt.nexusknot.model.http;
 
 public class Response {
     private String[] headers;

@@ -1,4 +1,4 @@
-package NexusKnotServer.Models;
+package bt.nexusknot.model;
 
 import java.net.Socket;
 

@@ -1,7 +1,7 @@
-package NexusKnotServer.Utils;
+package bt.nexusknot.util;
 
-import NexusKnotServer.Models.HTTP.ErrorCode;
-import NexusKnotServer.Models.HTTP.Response;
+import bt.nexusknot.model.http.ErrorCode;
+import bt.nexusknot.model.http.Response;
 
 import java.io.*;
 import java.net.HttpURLConnection;

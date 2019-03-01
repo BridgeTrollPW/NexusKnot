@@ -1,4 +1,4 @@
-package NexusKnotServer.Models;
+package bt.nexusknot.model;
 
 import java.io.DataInputStream;
 import java.io.EOFException;
@@ -37,7 +37,8 @@ public class Session extends Thread{
                     System.out.println("[Client::"+this.sessionId+"]: " + message);
                 }catch (EOFException endofstream)
                 {
-                    System.out.println("end of stream");
+                    System.out.println("end of stream/client disconnected abruptly");
+                    break;
                 }
             }
         } catch (IOException e) {
