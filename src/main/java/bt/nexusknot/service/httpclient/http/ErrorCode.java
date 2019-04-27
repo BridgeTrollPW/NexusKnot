@@ -1,4 +1,4 @@
-package bt.nexusknot.model.http;
+package bt.nexusknot.service.httpclient.http;
 
 public enum ErrorCode {
     MalformedURL(900, "Request URL is malformed"),

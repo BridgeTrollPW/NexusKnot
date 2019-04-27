@@ -1,13 +1,12 @@
 package bt.nexusknot.service.tasksystem;
 
+import bt.nexusknot.server.NexusKnotServer;
 import bt.nexusknot.service.tasksystem.boundary.Task;
 import bt.nexusknot.service.tasksystem.model.Heartbeat;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import static bt.nexusknot.service.tasksystem.model.TaskStatus.*;
 
 public class TaskScheduler extends Thread
 {
@@ -17,6 +16,7 @@ public class TaskScheduler extends Thread
 
     TaskScheduler()
     {
+        logger.info(NexusKnotServer.logMessages.getProperty("taskscheduler_start"));
         this.taskList = new ArrayList<>();
         this.taskList.add(new Heartbeat());
     }
@@ -25,9 +25,23 @@ public class TaskScheduler extends Thread
     public void run()
     {
         this.running = true;
+
         while (this.running)
         {
-            taskList.parallelStream()
+            if (this.taskList.isEmpty())
+            {
+                try
+                {
+                    Thread.sleep(200);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                continue;
+            }
+
+            this.taskList.parallelStream()
                     .forEach(task ->
                     {
                         switch (task.getReport().getStatus())
@@ -44,12 +58,14 @@ public class TaskScheduler extends Thread
                             case ERROR:
                             case SUCCESS:
                                 taskList.remove(task);
+                                logger.info("Remove Task" + task.getName() + " from execution");
                                 break;
                             default:
                                 logger.info("Panic! Unknown Task " + task.getName());
                                 break;
                         }
                     });
+
         }
     }
 

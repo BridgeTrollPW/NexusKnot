@@ -1,4 +1,4 @@
-package bt.nexusknot.model.http;
+package bt.nexusknot.service.httpclient.http;
 
 public class Response {
     private String[] headers;
